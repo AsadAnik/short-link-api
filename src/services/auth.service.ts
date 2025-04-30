@@ -1,6 +1,7 @@
 // import { User } from '../models';
 // import { BcryptUtils, TokenUtils } from '../lib/shared';
 import PrismaClient from '../prisma';
+import { IRegisterUser } from '../types/user.types';
 
 class AuthService {
     // private readonly userModelRepository: typeof User;
@@ -38,7 +39,7 @@ class AuthService {
      * @param userInfo
      */
     // region Registration Service
-    public async register(userInfo: any): Promise<any> {
+    public async register(userInfo: IRegisterUser): Promise<any> {
         try {
             const createUser = await PrismaClient.user.create({ data: userInfo });
             if (!createUser) throw new Error(`Error while creating user : ${createUser}`);
