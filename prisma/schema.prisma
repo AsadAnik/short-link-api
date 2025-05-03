@@ -12,7 +12,7 @@ model User {
     email String @unique
     password String
     credits Int @default(100)
-    links Link[]
+    // links Link[]
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
@@ -21,9 +21,8 @@ model Link {
     id Int @id @default(autoincrement())
     original String
     short String @unique
-    user User? @relation(fields: [userId], references: [id])
+    // user User? @relation(fields: [userId], references: [id])
     userId Int?
-    clicks Int @default(0)
-    ipAddress String? 
+    clicks Int? @default(0)
     createdAt DateTime @default(now())
 }

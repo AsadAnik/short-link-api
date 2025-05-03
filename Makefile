@@ -50,7 +50,7 @@ prod-restart: prod-down prod-up
 # Database Management
 .PHONY: db-up
 db-up:
-	@echo "Starting MySQL database...
+	@echo "Starting MySQL database..."
 	docker-compose up -d db
 
 .PHONY: db-down

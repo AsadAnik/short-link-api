@@ -1,3 +1,11 @@
+/**
+ * Represents a standard interface for a response object.
+ *
+ * @interface IResponse
+ *
+ * @property {boolean} success Indicates whether the operation was successful.
+ * @property {string} message Contains additional information about the operation or response.
+ */
 export interface IResponse {
     success: boolean;
     message: string;
@@ -42,4 +50,21 @@ export interface IResponseWithMessage extends IResponse {
 export interface IResponseWithPayloadAndMessage<T> extends IResponseWithPayload<T> {
     message: string;
     data: T;
+}
+
+/**
+ * Interface representing a paginated response with a payload and pagination details.
+ *
+ * @template T The type of the payload in the response.
+ *
+ * @extends IResponseWithPayload<T>
+ *
+ * @property {number} total The total number of items available.
+ * @property {number} page The current page number in the paginated response.
+ * @property {number} limit The maximum number of items per page.
+ */
+export interface IResponseWithPagination<T> extends IResponseWithPayload<T> {
+    total: number;
+    page: number;
+    limit: number;
 }

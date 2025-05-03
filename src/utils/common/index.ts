@@ -1,0 +1,1 @@
+export { default as generateShortCode } from './generate-short-code.util';
