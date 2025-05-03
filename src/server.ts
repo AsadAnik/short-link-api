@@ -7,7 +7,7 @@ const PORT: number = Number(process.env.PORT || 8080);
 
 (async () => {
     try {
-        // Try to connect the MySQL here..
+        // Try to connect the MySQL
         await Prisma.$connect();
         console.log('------ Database is connected! -------');
 
@@ -16,7 +16,7 @@ const PORT: number = Number(process.env.PORT || 8080);
             console.log(`Server is running on http://${HOST}:${PORT}`);
         });
 
-        // Graceful Shutdown..
+        // Graceful Shutdown
         process.on('SIGINT', async () => {
             await Prisma.$disconnect();
             console.log('Disconnected from database 💥');

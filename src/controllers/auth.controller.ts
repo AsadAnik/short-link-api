@@ -17,10 +17,12 @@ class AuthController {
      */
     public register = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const createUser = await this.authService.register(req.body);
+            const { email, password } = req.body;
+            const createUser = await this.authService.register({ email, password });
             if (!createUser) throw new Error(`Can not create User`);
 
             res.status(200).json({
+                success: true,
                 message: 'Register',
                 createdUser: createUser
             });
@@ -38,8 +40,13 @@ class AuthController {
      */
     public login = async (req: Request, res: Response | any, next: NextFunction) => {
         try {
+            const { email, password } = req.body;
+            const loggedInUser = await this.authService.loginUser({ email, password });
+
             res.status(200).json({
-                message: 'Login'
+                message: 'LoggedIn Successfully',
+                success: true,
+                data: loggedInUser,
             });
 
         } catch (error) {
