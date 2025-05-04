@@ -1,16 +1,18 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { authRoutes, urlRoutes } from '../routes';
+import { UrlController } from '../controllers';
 // import { AuthMiddleware } from '../middlewares';
 
 const router: Router = Router();
+const urlController = new UrlController();
 
 /**
  * ---- Routes For API Version 01 -----
- * Now moved API Rutes from /api/v1/ to /api/
+ * All required routes root
  */
 router.use('/api/v1/auth', authRoutes);
 router.use('/api/v1/url', urlRoutes);
-// router.use('/api/v1/users', AuthMiddleware.verifyUser, userRoutes);
+router.get('/:shortcode', urlController.redirectToOriginalUrl);
 
 /**
  * ---- Health Check for the application here ----

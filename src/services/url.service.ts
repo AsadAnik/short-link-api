@@ -39,19 +39,19 @@ class AuthService {
      * This method takes a short link identifier and attempts to retrieve and redirect to the corresponding original link.
      *
      * @param {Object} param0 - The parameter object containing the short link.
-     * @param {string} param0.shortLink - The unique short link identifier to lookup.
+     * @param {string} param0.shortCode - The unique short link identifier to lookup.
      * @return {Promise<any>} A promise that resolves when the redirection logic is completed,
      *                        or rejects if the short link is invalid or the process fails.
      */
     // region Redirect-URL Service
-    public async redirectToOriginalLink({ shortLink }: IRedirectToOriginalLink): Promise<string> {
+    public async redirectToOriginalLink({ shortCode }: IRedirectToOriginalLink): Promise<string> {
         try {
-            const found = await PrismaClient.link.findUnique({ where: { short: shortLink } });
-            if (!found) throw new Error(`Link not found for short link: ${shortLink}`);
+            const found = await PrismaClient.link.findUnique({ where: { short: shortCode } });
+            if (!found) throw new Error(`Link not found for short link: ${shortCode}`);
 
             // Increment the visited link counts
             await PrismaClient.link.update({
-                where: { short: shortLink },
+                where: { short: shortCode },
                 data: { clicks: { increment: 1} }
             });
 

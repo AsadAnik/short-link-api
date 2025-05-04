@@ -52,14 +52,11 @@ class UrlController {
             const shortCode = parsedParams.data.shortcode;
             if (!shortCode) throw new Error(`Short Code is required`);
 
-            // RedirectToOriginal Link from Service Method
-            const originalLink: string = await this.urlService.redirectToOriginalLink({ shortLink: shortCode });
+            console.log('THE SHORT CODE IS : ', shortCode);
 
-            res.status(200).json({
-                success: true,
-                message: 'Successfully Shorted',
-                data: originalLink,
-            });
+            // RedirectToOriginal Link from Service Method
+            const originalLink: string = await this.urlService.redirectToOriginalLink({ shortCode });
+            return res.redirect(originalLink);
 
         } catch (error) {
             res.json({ success: false, error });

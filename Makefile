@@ -2,8 +2,8 @@
 
 # VARIABLES
 DOCKER_COMPOSE = docker-compose
-DOCKER_COMPOSE_DEV = docker-compose -f docker-compose.dev.yml
-DOCKER_COMPOSE_PROD = docker-compose -f docker-compose.prod.yml
+DOCKER_COMPOSE_DEV = docker-compose -f docker-compose.dev.yaml
+DOCKER_COMPOSE_PROD = docker-compose -f docker-compose.prod.yaml
 DOCKER_IMAGE_NAME = server-api-app
 DOCKER_CONTAINER_NAME = server-api
 

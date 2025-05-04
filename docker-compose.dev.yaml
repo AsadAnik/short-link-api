@@ -9,12 +9,14 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - ./src:/app/src
-      - ./node_modules:/app/node_modules
+      - ./prisma:/app/prisma
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
       - APP_NAME=Short Link API
+      - HOST=0.0.0.0
+      - PORT=3000
       - JWT_SECRET=supersecret
       - DATABASE_URL=mysql://root:rootpassword@db:3306/short-link-db
     depends_on:

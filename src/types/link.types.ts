@@ -18,5 +18,5 @@ export interface IShortenLink {
  * handle original links associated with provided short links.
  */
 export interface IRedirectToOriginalLink {
-    shortLink: string;
+    shortCode: string;
 }
