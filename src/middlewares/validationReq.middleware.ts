@@ -4,9 +4,10 @@ import { ValidationError } from '../lib/shared/validator/validator.adapter';
 import { StatusCodes } from 'http-status-codes';
 
 /**
- * VALIDATION MIDDLEWARE
- * @param schema 
- * @returns 
+ * Middleware function to validate the incoming request body against a provided schema.
+ * It modifies the request body to match the validated and sanitized data or returns an error response if validation fails.
+ * @param {any} schema - The validation schema to be used for validating the request body.
+ * @return {function} Middleware function that validates the request and either proceeds to the next middleware or sends an error response.
  */
 function validationReq(schema: any) {
     return (req: Request, res: Response, next: NextFunction): void => {

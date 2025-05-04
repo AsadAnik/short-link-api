@@ -1,6 +1,5 @@
 /**
  * Generates a random alphanumeric short code with the specified length.
- *
  * @param {number} [length=6] - The length of the short code to generate. Defaults to 6 if not provided.
  * @return {string} A randomly generated alphanumeric short code.
  */

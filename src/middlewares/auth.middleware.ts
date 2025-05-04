@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-// import { UserService } from '../services';
-// import { TokenUtils } from '../lib/shared';
+import { UserService } from '../services';
+import { TokenLib } from '../lib/shared';
 
 class AuthMiddleware {
     /**
@@ -20,19 +20,19 @@ class AuthMiddleware {
 
         try {
             // Verify the access token
-            // const tokenUtils = new TokenUtils();
-            // const decoded: any = tokenUtils.verifyToken(token);
+            const tokenLib = new TokenLib();
+            const decoded: any = tokenLib.verifyToken(token);
 
             // User Service Object Instance
-            // Fetch the user from the database
-            // const userService = new UserService();
-            // const user = await userService.findUser(decoded.id);
-            // if (!user) {
-            //     return res.status(StatusCodes.UNAUTHORIZED).json({ success: false, message: 'User not found' });
-            // }
+            // Fetches the user from the database
+            const userService = new UserService();
+            const user = await userService.findUser(decoded.id);
+            if (!user) {
+                return res.status(StatusCodes.UNAUTHORIZED).json({ success: false, message: 'User not found' });
+            }
 
-            // // Attach user to the request object
-            // req.user = user;
+            // Attach user to the request object
+            req.user = user;
             next();
             
         } catch (err) {
@@ -47,17 +47,17 @@ class AuthMiddleware {
      * @param roles Array of allowed roles (e.g., ['Admin', 'Consumer']).
      * @returns
      */
-    static allowRoles = (roles: ('Admin' | 'Consumer')[]) => {
-        return (req: Request | any, res: Response | any, next: NextFunction) => {
-            const user = req.user;
-
-            if (!user || !roles.includes(user.role)) {
-                return res.status(StatusCodes.FORBIDDEN).json({ message: 'Forbidden: Insufficient Permissions' });
-            }
-
-            next();
-        };
-    };
+    // static allowRoles = (roles: ('Admin' | 'Consumer')[]) => {
+    //     return (req: Request | any, res: Response | any, next: NextFunction) => {
+    //         const user = req.user;
+    //
+    //         if (!user || !roles.includes(user.role)) {
+    //             return res.status(StatusCodes.FORBIDDEN).json({ message: 'Forbidden: Insufficient Permissions' });
+    //         }
+    //
+    //         next();
+    //     };
+    // };
 }
 
 export default AuthMiddleware;
